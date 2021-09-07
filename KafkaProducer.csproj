@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Model\KafkaContext.Context.tt" />
+    <None Remove="Model\KafkaContext.edmx" />
+    <None Remove="Model\KafkaContext.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Model\KafkaContext.Context.tt">
+      <DependentUpon>KafkaContext.edmx</DependentUpon>
+      <LastGenOutput>KafkaContext.Context.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+    <Content Include="Model\KafkaContext.tt">
+      <DependentUpon>KafkaContext.edmx</DependentUpon>
+      <LastGenOutput>KafkaContext.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EntityDeploy Include="Model\KafkaContext.edmx">
+      <LastGenOutput>KafkaContext.Designer.cs</LastGenOutput>
+      <Generator>EntityModelCodeGenerator</Generator>
+    </EntityDeploy>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.7.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="kafka-sharp" Version="1.4.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.9" />
+   
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <!--<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Model\Cashiers.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Model\CashiersRole.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Model\Config.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Model\GetXml.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Model\KafkaContext.Context.cs">
+      <DependentUpon>KafkaContext.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Model\KafkaContext.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Model\KafkaContext.Designer.cs">
+      <DependentUpon>KafkaContext.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Model\SetXml.cs">
+      <DependentUpon>KafkaContext.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Model\KafkaContext.edmx.diagram">
+      <DependentUpon>KafkaContext.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>
