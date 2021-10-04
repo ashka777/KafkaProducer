@@ -25,9 +25,8 @@ namespace Kafka
             }
             CreateHostBuilder(args).Build().Run();
 
-            Console.WriteLine("End.");
+            //Console.WriteLine("End.");
             //Console.ReadLine();
-            //Task.Delay(2000);
         }
     }
 }
